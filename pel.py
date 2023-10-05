@@ -24,22 +24,22 @@ time.sleep(3) #adicionando 3 segundos de espera
 limpar_terminal() #chamando função que apaga o terminal
 
 #Identificação da Seção e Zona Eleitoral
-seção = "0129"
-zona_eleitoral = "546"
+SEÇÃO = "0129"
+ZONA_ELEITORAL = "546"
 
 #Código de Identificação da Urna Eletrônica
-código_identificação_ue = "jvf302"
+CÓDIGO_IDENTIFICAÇÃO_UE = "jvf302"
 
 #Total de eleitores esperados
-eleitores_esperados = 50
+ELEITORES_ESPERADOS = 50
 
 #Exibindo dados de identificação da Urna Eletrônica
 print(f""" 
 * Identificação da Urna Eletrônica *
 
-Seção: {seção}
-Zona eleitoral: {zona_eleitoral}
-Total de eleitores(as) esperados: {eleitores_esperados}
+Seção: {SEÇÃO}
+Zona eleitoral: {ZONA_ELEITORAL}
+Total de eleitores(as) esperados: {ELEITORES_ESPERADOS}
 
   """)
 
@@ -47,8 +47,8 @@ print("x-------------------------------------------------------------------x\n")
 #Inicializando chave de administrador (IMPORTANTE Anotar chave em algum lugar) será usada na "idade" para encerrar o processo de eleição da urna eletrônica
 
 #utilizando a função hash para gerar uma saída de valor hash da str(vhfg75hgjb)
-chave_administrador = hash("vhfg75hgjb") % 495048 #valor para diminuir o valor hash
-print("A chave de administradores é:", chave_administrador)
+CHAVE_ADMINISTRADOR = hash("vhfg75hgjb") % 495048 #valor para diminuir o valor hash
+print("A chave de administradores é:", CHAVE_ADMINISTRADOR)
 
 print("\nx-------------------------------------------------------------------x")
 
@@ -78,7 +78,7 @@ votação_vereador = ''
 #Valores pré-existentes
 
 #aptos a voto (pessoas que votaram)
-apto = 0 
+APTO = 0 
 
 #Votos para os partidos
 pdb = 0 
@@ -118,10 +118,10 @@ while True:
 	time.sleep(1) #adicionando 1s de espera para apagar o terminal
 	limpar_terminal() #apagando o terminal
 
-	if idade == chave_administrador: #Condição para o encerramento do programa, apenas para administradores das máquinas
+	if idade == CHAVE_ADMINISTRADOR: #Condição para o encerramento do programa, apenas para administradores das máquinas
 		break
 	elif idade >= 16 and idade <= 115: #se existe alguém com 115 anos.
-		apto = apto + 1 
+		APTO += 1 
 
 		#print com aspas triplas para o conteúdo ser exibido do mesmo jeito que foi escrito no editor
 		print("""
@@ -267,8 +267,8 @@ VN: Voto NULO ⚫
 		if verificar == 2:
 			print("\nNão se preocupe, iremos reiniciar o seu processo de votação 😊\n")
 			if idade >= 16:
-				if apto > 0:
-					apto -= 1
+				if APTO > 0:
+					APTO -= 1
 				#Cuidando de erros de contabilidade dos votos para partidos PDB
 				if votação_prefeito == "C1" or votação_prefeito == "C2" or votação_vereador == "V1" or votação_vereador == "V2" and pdb >= 0:
 					pdb -= tirar_pdb #Se opção 2, então - tiramos pontos dos partidos
@@ -335,11 +335,11 @@ VN: Voto NULO ⚫
 # * Votação (de uma Seção Eleitoral) *
 
 #IDENTIFICAÇÃO DA URNA ELETRÔNICA
-print("\nSeção:", seção, "\nZona eleitoral:", zona_eleitoral,"\n")
-print("Código de Identificação da Urna Eletrônica:",código_identificação_ue,"\n")
+print("\nSeção:", SEÇÃO, "\nZona eleitoral:", ZONA_ELEITORAL,"\n")
+print("Código de Identificação da Urna Eletrônica:",CÓDIGO_IDENTIFICAÇÃO_UE,"\n")
 
 #Quantos eleitores podem votar
-print("Total de Eleitores que puderam votar:",apto,"\n")
+print("Total de Eleitores que puderam votar:",APTO,"\n")
 
 #decoração
 print("\nx-------------------------------------------------------------------x\n")
