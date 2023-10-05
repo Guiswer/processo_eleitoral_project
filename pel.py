@@ -43,6 +43,16 @@ Total de eleitores(as) esperados: {eleitores_esperados}
 
   """)
 
+print("x-------------------------------------------------------------------x\n")
+#Inicializando chave de administrador (IMPORTANTE Anotar chave em algum lugar)
+
+#utilizando a função hash para gerar uma saída de valor hash da str(vhfg75hgjb)
+chave_administrador = hash("vhfg75hgjb") % 495048 #valor para diminuir o valor hash
+print("A chave de administradores é:", chave_administrador)
+
+print("\nx-------------------------------------------------------------------x")
+
+
 #Status do sistema
 print("\nIniciando processo de votação...")
 
@@ -108,7 +118,7 @@ while True:
 	time.sleep(1) #adicionando 1s de espera para apagar o terminal
 	limpar_terminal() #apagando o terminal
 
-	if idade == 2023: #Condição para o encerramento do programa, apenas para administradores das máquinas
+	if idade == chave_administrador: #Condição para o encerramento do programa, apenas para administradores das máquinas
 		break
 	elif idade >= 16 and idade <= 115: #se existe alguém com 115 anos.
 		apto = apto + 1 
@@ -239,7 +249,7 @@ VN: Voto NULO ⚫
 	print("\nAguarde alguns instantes...")
 	print("\nEstamos computando seus dados... 😊")
 
-	time.sleep(12) #12 segundos para a urna "computar"
+	time.sleep(10) #12 segundos para a urna "computar"
 	limpar_terminal()
 
 	while True:
