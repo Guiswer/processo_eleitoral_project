@@ -2,8 +2,8 @@
 
 /**************************************/
 /* Aluno: Guilherme Leandro - G773616 */
-/* TURMA: CC2A13					  */
-/* Profa. Eliane 				      */
+/* TURMA: CC2A13		      */
+/* Profa. Eliane 		      */
 /**************************************/
 
 """
@@ -20,7 +20,7 @@ def limpar_terminal():
         os.system('cls')
 
 print("Inicializando a Urna Eletrônica... 🇧🇷")
-time.sleep(3) #adicionando 3 segundos de espera
+time.sleep(3) #adicionando 3 segundos de espera 
 limpar_terminal() #chamando função que apaga o terminal
 
 #Identificação da Seção e Zona Eleitoral
@@ -408,4 +408,4 @@ print("Votos Nulos na votação para Vereador:", votos_nulos_vereador)
 
 
 #Fim do programa
-#Aproximadamente 20 horas de desenvolvimento
+#Aproximadamente 26 horas de desenvolvimento
