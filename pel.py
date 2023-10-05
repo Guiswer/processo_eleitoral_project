@@ -86,7 +86,11 @@ while True:
 	try:
 		idade = int(input("Por favor, digite sua idade: "))
 	except ValueError:
-	    print("\n * Idade inválida. * \n")
+	    print("\n * Idade inválida * ")
+	    print("\nIdade inválida. Por favor digite corretamente a sua idade 😊")
+	    time.sleep(5)
+
+	    limpar_terminal()
 	    continue #continuar a execução "não pare"  
 	    
 	time.sleep(1)
@@ -201,7 +205,7 @@ VN: Voto NULO ⚫
 		print("\nInapto a votação. Aguarde até completar 16 (dezesseis) anos 😊")
 		
 	else:
-		print("\nIdade inválida. Por favor digite corretamente sua idade 😊")
+		print("\nIdade inválida. Por favor digite corretamente a sua idade 😊")
 
 	if idade >= 16 and idade <= 115:
 		print("\nVoto para prefeito:", votação_prefeito)
@@ -213,7 +217,7 @@ VN: Voto NULO ⚫
 		print("\nProcesso encerrado!")
 
 	while True:
-		if idade < 16:
+		if idade < 16 or idade > 115:
 			break
 		#Opções para o eleitor prosseguir com o processo ou se deseja refazê-lo
 		try:
@@ -366,4 +370,4 @@ print("Votos Nulos na votação para Vereador:", votos_nulos_vereador)
 
 
 #Fim do programa
-#Aproximadamente 18 horas de desenvolvimento
+#Aproximadamente 20 horas de desenvolvimento
