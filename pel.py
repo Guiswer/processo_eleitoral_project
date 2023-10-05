@@ -1,7 +1,11 @@
 """
-Aluno: Guilherme Leandro - RA: G773616	 
-TURMA: CC2A13 
-Profa. Eliane 
+
+/**************************************/
+/* Aluno: Guilherme Leandro - G773616 */
+/* TURMA: CC2A13					  */
+/* Profa. Eliane 				      */
+/**************************************/
+
 """
 
 import os #Library para identificar o OS (utilizar comando 'clear')
@@ -179,10 +183,10 @@ VN: Voto NULO ⚫
 		match votação_vereador:
 			case "V1":
 				pdb += 1
-				tirar_pdb += 1 
+				tirar_pdb += 1 #Caso opção (2) devemos remover os votos para os partidos
 			case "V2":
 				pdb += 1
-				tirar_pdb += 1
+				tirar_pdb += 1 
 			case "V3":
 				psb += 1
 				tirar_psb += 1
