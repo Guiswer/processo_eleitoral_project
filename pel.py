@@ -268,11 +268,11 @@ VN: Voto NULO ⚫
 			if idade >= 16:
 
 				#Cuidando de erros de contabilidade dos votos para partidos PDB
-				if votação_prefeito == "C1" or votação_prefeito == "C2" or votação_vereador == "V1" or votação_vereador == "V2" and pdb > 0:
+				if votação_prefeito == "C1" or votação_prefeito == "C2" or votação_vereador == "V1" or votação_vereador == "V2" and pdb >= 0:
 					pdb -= tirar_pdb #Se opção 2, então - tiramos pontos dos partidos
 
 				#Cuidando de erros de contabilidade dos votos para partidos PSB
-				elif votação_prefeito == "C3" or votação_prefeito == "C4" or votação_vereador == "V3" or votação_vereador == "V4" and psb > 0:
+				elif votação_prefeito == "C3" or votação_prefeito == "C4" or votação_vereador == "V3" or votação_vereador == "V4" and psb >= 0:
 					psb -= tirar_psb #Se opção 2, então - tiramos pontos dos partidos
 
 
