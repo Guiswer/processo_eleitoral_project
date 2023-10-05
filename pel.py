@@ -130,7 +130,7 @@ VN: Voto NULO ⚫
 		match votação_prefeito:
 			case "C1":
 				pdb += 1
-				tirar_pdb += 1
+				tirar_pdb += 1 #Caso opção (2) devemos remover os votos para os partidos
 			case "C2":
 				pdb += 1 
 				tirar_pdb += 1
@@ -236,8 +236,11 @@ VN: Voto NULO ⚫
 		verificar = 1
 		print("\nProcesso encerrado!")
 
+	print("\nAguarde alguns instantes...")
+	print("\nEstamos computando seus dados... 😊")
 
-	
+	time.sleep(12) #12 segundos para a urna "computar"
+	limpar_terminal()
 
 	while True:
 		if idade < 16 or idade > 115:
@@ -280,7 +283,7 @@ VN: Voto NULO ⚫
 
 			tirar_pdb = 0 
 			tirar_psb = 0
-
+			print("\nO processo foi devidamente concluído! ✅")
 			if idade >= 16:
 
 				#try para o prefeito
@@ -326,6 +329,8 @@ print("Código de Identificação da Urna Eletrônica:",código_identificação_
 #Quantos eleitores podem votar
 print("Total dos Eleitores que podem votar:",apto,"\n")
 
+#decoração
+print("\nx-------------------------------------------------------------------x\n")
 
 # * Totalização
 print(" 🚨 Ranking das eleições! 🚨 \n")
@@ -373,15 +378,15 @@ elif lista_total_prefeito[-1][1] == lista_total_prefeito[-2][1] and lista_total_
 
 #Caso o usuário somente digite votos BRANCOS ou NULOS - mostrar que houve um "equivoco"
 elif lista_total_prefeito[-1][1] == 0:
-	print(' * Houve um "equivoco" nas eleições dos prefeitos, e haverá um novo turno * ')
+	print(' 🚨 Houve um "equívoco" nas eleições dos prefeitos, e haverá um novo turno 🚨 ')
 
 else:
 	#resultados das votações para prefeito
-	print("\nCandidato a Prefeito mais votado:", lista_total_prefeito[-1])
+	print("\n🔰 Candidato a Prefeito mais votado:", lista_total_prefeito[-1])
 
 
-print("\nVotos Brancos na votação para Prefeitos:", votos_brancos_prefeito)	
-print("Votos Nulos na votação para Prefeitos:", votos_nulos_prefeito)
+print("\n⚪ Votos Brancos na votação para Prefeitos:", votos_brancos_prefeito)	
+print("⚫ Votos Nulos na votação para Prefeitos:", votos_nulos_prefeito)
 
 #decoração
 print("\nx-------------------------------------------------------------------x")
@@ -396,15 +401,15 @@ elif lista_total_vereador[-1][1] == lista_total_vereador[-2][1] and lista_total_
 
 #Caso o usuário somente digite votos BRANCOS ou NULOS - mostrar que houve um "equivoco"
 elif lista_total_vereador[-1][1] == 0:
-	print('\n * Houve um "equivoco" nas eleições dos vereadores, e haverá um novo turno * ')
+	print('\n 🚨 Houve um "equívoco" nas eleições dos vereadores, e haverá um novo turno 🚨 ')
 
 else: 
 	#resultados das votações para vereador
-	print("\nCandidato a Vereador mais votado:", lista_total_vereador[-1])
+	print("\n🔰 Candidato a Vereador mais votado:", lista_total_vereador[-1])
 
 
-print("\nVotos Brancos na votação para Vereador:", votos_brancos_vereador)
-print("Votos Nulos na votação para Vereador:", votos_nulos_vereador)
+print("\n⚪ Votos Brancos na votação para Vereador:", votos_brancos_vereador)
+print("⚫ Votos Nulos na votação para Vereador:", votos_nulos_vereador)
 
 
 #Fim do programa
