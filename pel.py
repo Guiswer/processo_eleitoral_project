@@ -44,7 +44,7 @@ Total de eleitores(as) esperados: {eleitores_esperados}
   """)
 
 print("x-------------------------------------------------------------------x\n")
-#Inicializando chave de administrador (IMPORTANTE Anotar chave em algum lugar)
+#Inicializando chave de administrador (IMPORTANTE Anotar chave em algum lugar) será usada na "idade" para encerrar o processo de eleição da urna eletrônica
 
 #utilizando a função hash para gerar uma saída de valor hash da str(vhfg75hgjb)
 chave_administrador = hash("vhfg75hgjb") % 495048 #valor para diminuir o valor hash
@@ -230,6 +230,12 @@ VN: Voto NULO ⚫
 
 		print("\n* Seus votos já foram cadastrados! * ✅\n") #primeira heurística de Nilsen
 		
+		print("\nAguarde alguns instantes...")
+		print("\nEstamos computando seus dados... 😊")
+
+		time.sleep(7) #7 segundos para a urna "computar"
+		limpar_terminal()
+
 
 	elif idade < 16 and idade > 0:
 		print("\nInapto a votação. Aguarde até completar 16 (dezesseis) anos 😊")
@@ -246,11 +252,6 @@ VN: Voto NULO ⚫
 		verificar = 1
 		print("\nProcesso encerrado!")
 
-	print("\nAguarde alguns instantes...")
-	print("\nEstamos computando seus dados... 😊")
-
-	time.sleep(10) #12 segundos para a urna "computar"
-	limpar_terminal()
 
 	while True:
 		if idade < 16 or idade > 115:
@@ -266,13 +267,14 @@ VN: Voto NULO ⚫
 		if verificar == 2:
 			print("\nNão se preocupe, iremos reiniciar o seu processo de votação 😊\n")
 			if idade >= 16:
-
+				if apto > 0:
+					apto -= 1
 				#Cuidando de erros de contabilidade dos votos para partidos PDB
 				if votação_prefeito == "C1" or votação_prefeito == "C2" or votação_vereador == "V1" or votação_vereador == "V2" and pdb >= 0:
 					pdb -= tirar_pdb #Se opção 2, então - tiramos pontos dos partidos
 
 				#Cuidando de erros de contabilidade dos votos para partidos PSB
-				elif votação_prefeito == "C3" or votação_prefeito == "C4" or votação_vereador == "V3" or votação_vereador == "V4" and psb >= 0:
+				if votação_prefeito == "C3" or votação_prefeito == "C4" or votação_vereador == "V3" or votação_vereador == "V4" and psb >= 0:
 					psb -= tirar_psb #Se opção 2, então - tiramos pontos dos partidos
 
 
@@ -325,7 +327,7 @@ VN: Voto NULO ⚫
 			print("Opção inválida")	
 
 
-	print("\nPressione 'ENTER' encerrar sua sessão.")
+	print("\nPressione 'ENTER' para encerrar sua sessão.")
 	confirmar = input()
 	limpar_terminal()
 
@@ -337,7 +339,7 @@ print("\nSeção:", seção, "\nZona eleitoral:", zona_eleitoral,"\n")
 print("Código de Identificação da Urna Eletrônica:",código_identificação_ue,"\n")
 
 #Quantos eleitores podem votar
-print("Total dos Eleitores que podem votar:",apto,"\n")
+print("Total de Eleitores que puderam votar:",apto,"\n")
 
 #decoração
 print("\nx-------------------------------------------------------------------x\n")
@@ -424,3 +426,4 @@ print("⚫ Votos Nulos na votação para Vereador:", votos_nulos_vereador)
 
 #Fim do programa
 #Aproximadamente 26 horas de desenvolvimento
+
