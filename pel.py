@@ -41,10 +41,14 @@ Total de eleitores(as) esperados: {eleitores_esperados}
 
 #Status do sistema
 print("\nIniciando processo de votação...")
+
 time.sleep(2)
+
 print("\nTudo pronto para o processo! ✅\n") #Status do sistema
 input("Pressione 'ENTER' para iniciar...")
+
 time.sleep(0.2)
+
 limpar_terminal()
 
 #Definindo dicionários para contabilizar o total de votos
@@ -80,7 +84,7 @@ while True:
 
 	#Garantindo que o input seja inteiro, se not int() = idade inválida
 	try:
-		idade = int(input("Digite sua idade: "))
+		idade = int(input("Por favor, digite sua idade: "))
 	except ValueError:
 	    print("\n * Idade inválida. * \n")
 	    continue #continuar a execução "não pare"  
@@ -119,8 +123,23 @@ VN: Voto NULO ⚫
 
 		#O eleitor deve digitar corretamente a sigla de seu candidato
 		while votação_prefeito != "C1" and votação_prefeito != "C2" and votação_prefeito != "C3" and votação_prefeito != "C4" and votação_prefeito != "VB" and votação_prefeito != "VN":
-			print("\n* Escolha inválida *\n")
-			print("Por favor, digite corretamente a sua opção.\n")
+			print("\n* Escolha inválida, o processo está reiniciando.. *\n")
+			print("Por favor, digite corretamente a sua opção 😊 \n")
+
+			time.sleep(5)
+			limpar_terminal()
+
+			print("""
+Opções de voto para PREFEITOS:
+
+C1: Candidato 1 
+C2: Candidato 2
+C3: Candidato 3
+C4: Candidato 4
+VB: Voto BRANCO ⚪
+VN: Voto NULO ⚫
+""")
+
 			votação_prefeito = input("Digite a sigla de seu candidato a PREFEITO, ou outra opção: ")
 		print("\nSeu voto foi cadastrado! ✅")
 
@@ -153,10 +172,25 @@ VN: Voto NULO ⚫
 
 		#O eleitor deve digitar corretamente a sigla de seu candidato
 		while votação_vereador != "V1" and votação_vereador != "V2" and votação_vereador != "V3" and votação_vereador != "V4" and votação_vereador != "VB" and votação_vereador != "VN":
-			print("\n* Escolha inválida *\n")
-			print("Por favor, digite corretamente a sua opção.\n")
+			print("\n* Escolha inválida, o processo está reiniciando.. *\n")
+			print("Por favor, digite corretamente a sua opção 😊 \n")
+
+			time.sleep(5)
+			limpar_terminal()
+
+			print(""" \n
+Opções de voto para VEREADORES: 
+
+V1: Candidato 1 
+V2: Candidato 2
+V3: Candidato 3
+V4: Candidato 4
+VB: Voto BRANCO ⚪
+VN: Voto NULO ⚫
+""")
+
 			votação_vereador = input("Digite a sigla de seu candidato a vereador ou outra opção: ")
-		
+
 		time.sleep(2)
 		limpar_terminal()
 
@@ -164,7 +198,7 @@ VN: Voto NULO ⚫
 		
 
 	elif idade < 16 and idade > 0:
-		print("\nInapto a votação. Aguarde até completar 16 (dezesseis) anos.\n")
+		print("\nInapto a votação. Aguarde até completar 16 (dezesseis) anos 😊")
 		
 	else:
 		print("\nIdade inválida. Por favor digite corretamente sua idade 😊")
@@ -179,6 +213,8 @@ VN: Voto NULO ⚫
 		print("\nProcesso encerrado!")
 
 	while True:
+		if idade < 16:
+			break
 		#Opções para o eleitor prosseguir com o processo ou se deseja refazê-lo
 		try:
 			verificar = int(input("\nDigite (1) para confirmar suas escolhas, ou digite (2) se deseja anular suas escolhas e refazer o processo: "))
@@ -190,7 +226,6 @@ VN: Voto NULO ⚫
 		if verificar == 2:
 			if idade >= 16:
 				try:
-					print("Dentro do bloco try")
 					#para anular as escolhas - o total_prefeito simplesmente não recebe nada
 					total_prefeito[votação_prefeito] += 0
 					total_vereador[votação_vereador] += 0
@@ -251,7 +286,7 @@ print("Total dos Eleitores que podem votar:",apto,"\n")
 
 
 # * Totalização
-print(" * Ranking das eleições * ")
+print(" 🚨 Ranking das eleições! 🚨 \n")
 print(total_prefeito)
 print(total_vereador)
 
