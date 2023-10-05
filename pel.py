@@ -16,7 +16,7 @@ def limpar_terminal():
         os.system('cls')
 
 print("Inicializando a Urna Eletrônica... 🇧🇷")
-time.sleep(3)
+time.sleep(3) #adicionando 3 segundos de espera
 limpar_terminal() #chamando função que apaga o terminal
 
 #Identificação da Seção e Zona Eleitoral
@@ -47,9 +47,9 @@ time.sleep(2)
 print("\nTudo pronto para o processo! ✅\n") #Status do sistema
 input("Pressione 'ENTER' para iniciar...")
 
-time.sleep(0.2)
+time.sleep(0.2) #adicionando 0.2s de espera
 
-limpar_terminal()
+limpar_terminal() #apagando terminal
 
 #Definindo dicionários para contabilizar o total de votos
 total_prefeito = {"C1": 0,  "C2": 0, "C3": 0, "C4": 0}
@@ -70,6 +70,7 @@ apto = 0
 pdb = 0 
 psb = 0
 
+
 #Votos brancos e nulos Prefeito
 votos_brancos_prefeito = 0
 votos_nulos_prefeito = 0
@@ -78,6 +79,13 @@ votos_nulos_prefeito = 0
 votos_brancos_vereador = 0
 votos_nulos_vereador = 0
 
+#Tirar valores dos partidos caso o user desejar refazer o processo
+tirar_pdb = 0
+tirar_psb = 0
+
+#Auxiliadores das variáveis "tirar"
+tirar_pdb_aux = 0
+tirar_psb_aux = 0
 
 #Processo de votação
 while True: 
@@ -88,13 +96,13 @@ while True:
 	except ValueError:
 	    print("\n * Idade inválida * ")
 	    print("\nIdade inválida. Por favor digite corretamente a sua idade 😊")
-	    time.sleep(5)
+	    time.sleep(5) #5 segundos de espera
 
 	    limpar_terminal()
 	    continue #continuar a execução "não pare"  
 	    
-	time.sleep(1)
-	limpar_terminal()
+	time.sleep(1) #adicionando 1s de espera para apagar o terminal
+	limpar_terminal() #apagando o terminal
 
 	if idade == 2023: #Condição para o encerramento do programa, apenas para administradores das máquinas
 		break
@@ -118,12 +126,16 @@ VN: Voto NULO ⚫
 		match votação_prefeito:
 			case "C1":
 				pdb += 1
+				tirar_pdb += 1
 			case "C2":
 				pdb += 1 
+				tirar_pdb += 1
 			case "C3":
 				psb += 1
+				tirar_psb += 1
 			case "C4":
-				psb += 1 
+				psb += 1
+				tirar_psb += 1 
 
 		#O eleitor deve digitar corretamente a sigla de seu candidato
 		while votação_prefeito != "C1" and votação_prefeito != "C2" and votação_prefeito != "C3" and votação_prefeito != "C4" and votação_prefeito != "VB" and votação_prefeito != "VN":
@@ -147,7 +159,7 @@ VN: Voto NULO ⚫
 			votação_prefeito = input("Digite a sigla de seu candidato a PREFEITO, ou outra opção: ")
 		print("\nSeu voto foi cadastrado! ✅")
 
-		time.sleep(3)
+		time.sleep(2)
 		limpar_terminal()
 
 		#print com aspas triplas para o conteúdo ser exibido do mesmo jeito que foi escrito no editor
@@ -166,13 +178,17 @@ VN: Voto NULO ⚫
 		#match case para contabilizar os votos para os partidos VEREADOR
 		match votação_vereador:
 			case "V1":
-				pdb += 1 
+				pdb += 1
+				tirar_pdb += 1 
 			case "V2":
 				pdb += 1
+				tirar_pdb += 1
 			case "V3":
 				psb += 1
+				tirar_psb += 1
 			case "V4":
 				psb += 1
+				tirar_psb += 1
 
 		#O eleitor deve digitar corretamente a sigla de seu candidato
 		while votação_vereador != "V1" and votação_vereador != "V2" and votação_vereador != "V3" and votação_vereador != "V4" and votação_vereador != "VB" and votação_vereador != "VN":
@@ -198,7 +214,7 @@ VN: Voto NULO ⚫
 		time.sleep(2)
 		limpar_terminal()
 
-		print("\n* Seus votos já foram cadastrados! ✅ *\n") #primeira heurística de Nilsen
+		print("\n* Seus votos já foram cadastrados! * ✅\n") #primeira heurística de Nilsen
 		
 
 	elif idade < 16 and idade > 0:
@@ -216,6 +232,9 @@ VN: Voto NULO ⚫
 		verificar = 1
 		print("\nProcesso encerrado!")
 
+
+	
+
 	while True:
 		if idade < 16 or idade > 115:
 			break
@@ -228,13 +247,23 @@ VN: Voto NULO ⚫
 			continue #Continuar loop até o usuário digitar a opção correta
 
 		if verificar == 2:
+			print("\nNão se preocupe, iremos reiniciar o seu processo de votação 😊\n")
 			if idade >= 16:
+
+				#Cuidando de erros de contabilidade dos votos para partidos PDB
+				if votação_prefeito == "C1" or votação_prefeito == "C2" or votação_vereador == "V1" or votação_vereador == "V2" and pdb > 0:
+					pdb -= tirar_pdb #Se opção 2, então - tiramos pontos dos partidos
+
+				#Cuidando de erros de contabilidade dos votos para partidos PSB
+				elif votação_prefeito == "C3" or votação_prefeito == "C4" or votação_vereador == "V3" or votação_vereador == "V4" and psb > 0:
+					psb -= tirar_psb #Se opção 2, então - tiramos pontos dos partidos
+
+
 				try:
 					#para anular as escolhas - o total_prefeito simplesmente não recebe nada
 					total_prefeito[votação_prefeito] += 0
 					total_vereador[votação_vereador] += 0
 				except KeyError:
-					print("Dentro do bloco except")
 					votos_brancos_prefeito += 0
 					votos_brancos_vereador += 0
 					continue
@@ -244,6 +273,10 @@ VN: Voto NULO ⚫
 				None
 
 		elif verificar == 1:
+
+			tirar_pdb = 0 
+			tirar_psb = 0
+
 			if idade >= 16:
 
 				#try para o prefeito
@@ -274,6 +307,7 @@ VN: Voto NULO ⚫
 		else:
 			print("Opção inválida")	
 
+
 	print("\nPressione 'ENTER' encerrar sua sessão.")
 	confirmar = input()
 	limpar_terminal()
@@ -291,8 +325,8 @@ print("Total dos Eleitores que podem votar:",apto,"\n")
 
 # * Totalização
 print(" 🚨 Ranking das eleições! 🚨 \n")
-print(total_prefeito)
-print(total_vereador)
+print("Rank dos prefeitos:", total_prefeito, "\n")
+print("Rank dos vereadores:", total_vereador)
 
 
 # * Divulgação dos Resultados *
