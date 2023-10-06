@@ -285,7 +285,7 @@ VN: Voto NULO ⚫
 				except KeyError:
 					votos_brancos_prefeito += 0
 					votos_brancos_vereador += 0
-					continue
+					
 				break		
 			else:
 				#previnir erros para menores
